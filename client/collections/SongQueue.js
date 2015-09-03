@@ -10,6 +10,8 @@ var SongQueue = Songs.extend({
     },this);
 
     this.on('ended', function() {
+      //increment playcount for song?
+
       //debugger;
       this.shift();
       if (this.length > 0){
@@ -24,6 +26,8 @@ var SongQueue = Songs.extend({
       
     }, this);
   },
+
+  //Playcount property?
 
   playFirst: function(){
     this.at(0).play();
