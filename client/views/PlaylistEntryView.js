@@ -19,7 +19,7 @@ var PlaylistEntryView = Backbone.View.extend({
     },
 
     'click button' : function() {
-      this.model.playlistAdd();
+      // this.model.playlistAdd();
     }
   },
 

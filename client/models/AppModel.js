@@ -4,6 +4,7 @@ var AppModel = Backbone.Model.extend({
   initialize: function(params) {
     this.set('currentSong', new SongModel());
     this.set('songQueue', new SongQueue());
+    this.set('allPlaylists',[]);
 
     /* Note that 'this' is passed as the third argument. That third argument is
     the context. The 'play' handler will always be bound to that context we pass in.
@@ -27,6 +28,10 @@ var AppModel = Backbone.Model.extend({
       //console.log('app is hearing end events');
       // this.get('songQueue').pop();
     }, this);
+
+    //on "playlistAdd" event
+      //check if playlist already exists do nothing
+      //otherwise add to allPlaylists property
   }
 
 });
