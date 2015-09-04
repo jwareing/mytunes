@@ -27,10 +27,12 @@ var SongModel = Backbone.Model.extend({
 
   playlistAdd: function(){
     var newListName = prompt("What playlist would you like to add to?");
-    var changingList = this.get('playlists');
-    changingList.push(newListName);
-    this.set('playlists',changingList);
-    this.trigger('playlistAdd',this);
+    if (newListName){
+      var changingList = this.get('playlists');
+      changingList.push(newListName);
+      this.set('playlists',_.uniq(changingList));
+      this.trigger('playlistAdd',this);
+    }
   }
 
 

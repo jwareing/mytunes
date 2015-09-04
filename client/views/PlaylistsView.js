@@ -1,6 +1,6 @@
 var PlayListsView = Backbone.View.extend({
 
-  tagName: 'div',
+  tagName: 'table',
   initialize: function(){
 
     this.allPlaylists = [];
@@ -8,7 +8,6 @@ var PlayListsView = Backbone.View.extend({
     this.render();
 
     var context = this;
-    debugger;
 
     this.collection.on('playlistAdd', function(song){
       //check if playlists of current song contain something
@@ -18,11 +17,11 @@ var PlayListsView = Backbone.View.extend({
       for (var i = 0; i < grumpyGuses.length; i++){
         if (existingPlaylists.indexOf(grumpyGuses[i]) === -1){
           existingPlaylists.push(grumpyGuses[i]);
-          debugger;
           context.render();
         }
       }
-    })
+    },this);
+
 
   },
 
@@ -37,11 +36,12 @@ var PlayListsView = Backbone.View.extend({
     var context = this;
 
 
-    this.$el.html('<div>All Playlists</div>').append(
+    this.$el.html('<th>All Playlists</th>').append(
       this.allPlaylists.map(function(name) {
         return new PlaylistView({collection: context.collection, playlistName: name}).render();
       })
     );
+    return this.$el;
   }
 
 });

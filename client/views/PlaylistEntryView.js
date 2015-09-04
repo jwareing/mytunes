@@ -2,6 +2,7 @@
 var PlaylistEntryView = Backbone.View.extend({
 
   initialize: function() {
+    this.render();
     this.model.on('change', this.render, this);
   },
 
@@ -17,13 +18,17 @@ var PlaylistEntryView = Backbone.View.extend({
       // this.model.play();
       this.model.enqueue();
     },
-
-    'click button' : function() {
-      // this.model.playlistAdd();
+    'click .#removeFromPlaylist': function() {
+      //POINT OF INTEREST!!!!
+      console.dir(this);
+      // this.model.play();
+      var currentLists = this.model.get('playlists');
+      var cutPoint = currentLists.indexOf()
     }
   },
 
   render: function(){
+    // debugger;
     return this.$el.html(this.template(this.model.attributes));
   }
 

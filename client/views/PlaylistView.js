@@ -1,13 +1,26 @@
 // PlaylistView.js - Defines a backbone view class for a playlist.
 var PlaylistView = Backbone.View.extend({
 
-  tagName: "table",
+  tagName: "tr",
 
   initialize: function() {
     //debugger;
     this.render();
-    this.on('all',this.render,this);
+    this.collection.on('all',this.render,this);
 
+  },
+
+  events: {
+    'click #PlayPlaylist': function() {
+      var context = this;
+      console.dir(this);
+      // this.model.play();
+      context.collection.models.forEach(function(thing){
+        if (_.contains(thing.get('playlists'),context.options.playlistName)) {
+          thing.enqueue();
+        }
+      });
+    }
   },
 
   render: function() {
@@ -16,7 +29,7 @@ var PlaylistView = Backbone.View.extend({
     var context = this;
     this.$el.children().detach();
 
-    this.$el.html('<th>AHASFHASJKFHSFKJF</th>').append(
+    this.$el.html('<th class="hoverable">'+context.options.playlistName+'</th><td><button id="PlayPlaylist">PLAY ALL</button></td>').append(
       
       context.collection.map(function(song) {
         //debugger;
@@ -25,6 +38,7 @@ var PlaylistView = Backbone.View.extend({
         }
       })
     );
+    return this.$el;
   }
 
 });
